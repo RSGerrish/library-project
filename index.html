@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Project</title>
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="./img/book-open-variant.svg" alt="" id="logo-img">
+      <h1>My Library</h1>
+    </div>
+  </header>
+  <main>
+    <div class="book-card">
+      <h2>Title</h2>
+      <h3>Author</h3>
+      <h3>Pages</h3>
+      <h3>Has Been Read?</h3>
+    </div>
+  </main>
+  <footer>
+    <div class="filler"></div>
+    <div class="footer-credit">Website Design By Robin Gerrish</div>
+    <div class="footer-btn-container">
+      <button id="btn-add">+</button>
+    </div>
+  </footer>
+  <div class="add-book-form">
+    <div class="form-container">
+      <h2>Add a book...</h2>
+      <div class="input-item">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title">
+      </div>
+      <div class="input-item">
+        <label for="author">Author</label>
+        <input type="text" id="author" name="author">
+      </div>
+      <div class="input-item">
+        <label for="pages">Number of Pages</label>
+        <input type="number" id="pages" name="pages">
+      </div>
+      <div class="input-item">
+        <label for="is-read">Has this book been read yet?</label>
+        <input type="checkbox" id="is-read" name="is-read">
+      </div>
+      <div class="input-btns">
+        <button class="form-btn" id="btn-ok">OK</button>
+        <button class="form-btn" id="btn-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
