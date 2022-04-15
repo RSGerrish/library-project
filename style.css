@@ -38,6 +38,7 @@ main {
   grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr 1fr;
   gap: 1rem;
   padding: 1rem;
+  margin: 0 calc(30% - 375px);
 }
 
 .book-card {
