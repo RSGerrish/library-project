@@ -13,7 +13,6 @@ function Book(title, author, pages, isRead) {
   this.pages = pages;
   this.isRead = isRead;
   this.index = myLibrary.length;
-  console.log(this);
 }
 
 function addBookToLibrary(book) {
@@ -22,18 +21,26 @@ function addBookToLibrary(book) {
 
 function displayLibrary() {
   const grid = document.querySelector('main');
+  let wasItRead = "Not read yet";
 
   grid.innerHTML = "";
 
   for(i = 0; i < myLibrary.length; i++) {
+    if(myLibrary[i].isRead) {
+      wasItRead = "Already read";
+    } else {
+      wasItRead = "Not read yet";
+    }
+
     grid.innerHTML += 
     `<div class="book-card" index="${i}">
     <h2>${myLibrary[i].title}</h2>
     <h3>By ${myLibrary[i].author}</h3>
     <h3>${myLibrary[i].pages} pages</h3>
-    <h3>${myLibrary[i].isRead}</h3>
+    <h3>${wasItRead}</h3>
     <div class="card-btn-container">
-      <button class="card-btn btn-remove" id="btn-remove-${i}" data-index=${i}>Remove</button>
+      <button class="card-btn btn-mark-read" id="btn-mark-read" data-index=${i}>Mark Read</button>
+      <button class="card-btn btn-remove" id="btn-remove" data-index=${i}>Remove</button>
     </div>
   </div>`
   }
@@ -41,12 +48,17 @@ function displayLibrary() {
   const mainGrid = document.querySelector('main');
 
   mainGrid.addEventListener("click", function(e) {
-    let cardNumber = e.target.id.slice(-1);
+    let target = e.target.id;
+    let listIndex = e.target.dataset.index;
 
-    if(cardNumber === e.target.dataset.index && !removed) {
-        myLibrary.splice(e.target.dataset.index, 1);
-        displayLibrary();
-        removed = true;
+    if(target === 'btn-remove') {
+      myLibrary.splice(listIndex, 1);
+      displayLibrary();
+      e.stopImmediatePropagation();
+    } else if(target === 'btn-mark-read') {
+      myLibrary[listIndex].isRead = true;
+      displayLibrary();
+      e.stopImmediatePropagation();
     }
   });
 }
@@ -103,6 +115,5 @@ window.addEventListener('load',function() {
     }
 
     displayLibrary();
-    console.log(myLibrary);
   }
 });

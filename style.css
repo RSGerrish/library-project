@@ -14,7 +14,7 @@ body {
 
 header {
   box-shadow: 0 5px 5px lightgrey;
-  background: linear-gradient(122deg, #ffbf00, #ffffff 40%);
+  background: linear-gradient(122deg, #c09000, rgb(25, 49, 58) 70%);
 }
 
 .logo-container {
@@ -46,8 +46,8 @@ main {
   max-width: 450px;
   background-color:#fff;
   border-radius: 5px;
-  border: 1px solid #ffbf00;
-  border-top: 1.3rem solid #ffbf00;
+  border: 1px solid #c09000;
+  border-top: 1.3rem solid #d8a50c;
   box-shadow: 3px 3px 3px lightgrey;
   padding: 1rem;
   overflow: hidden;
@@ -57,6 +57,8 @@ footer {
   box-shadow: 0 -2px 5px lightgrey;
   display: flex;
   justify-content: space-around;
+  background: linear-gradient(165deg, #c09000 10%, rgb(25, 49, 58) 40%);
+  color: #fff;
 }
 
 .footer-credit {
@@ -70,9 +72,11 @@ footer {
   width: 50px;
   border-radius: 25px;
   border: none;
-  background-color: #87ceeb;
-  box-shadow: 3px 3px 3px lightgrey;
+  background-color: #d8a50c;
+  box-shadow: 3px 3px 3px black;
   margin: 10px;
+  font-size: 2.5rem;
+  font-weight: 900;
 }
 
 #btn-add:active {
@@ -138,12 +142,12 @@ footer {
 }
 
 #btn-cancel {
-  background-color: #ffbf00;
+  background-color: #c09000;
 }
 
 .card-btn-container {
   display: flex;
-  justify-content: right;
+  justify-content: space-between;
 }
 
 .card-btn {
@@ -155,6 +159,17 @@ footer {
   margin: 10px;
 }
 
+.card-btn:active {
+  box-shadow: none;
+  position:relative;
+  top: 3px;
+  left: 3px;
+}
+
 .btn-remove {
   background-color: rgb(219, 34, 34);
+}
+
+.btn-mark-read {
+  background-color:rgb(143, 219, 20);
 }
