@@ -1,5 +1,6 @@
 let myLibrary = [];
 let firstTime = false;
+let removed = false;
 const addBtn = document.querySelector('#btn-add');
 const addForm = document.querySelector('.add-book-form');
 const btnOK = document.querySelector('#btn-ok');
@@ -12,6 +13,7 @@ function Book(title, author, pages, isRead) {
   this.pages = pages;
   this.isRead = isRead;
   this.index = myLibrary.length;
+  console.log(this);
 }
 
 function addBookToLibrary(book) {
@@ -31,24 +33,22 @@ function displayLibrary() {
     <h3>${myLibrary[i].pages} pages</h3>
     <h3>${myLibrary[i].isRead}</h3>
     <div class="card-btn-container">
-      <button class="card-btn btn-remove" id="btn-remove" index=${i}>Remove</button>
+      <button class="card-btn btn-remove" id="btn-remove-${i}" data-index=${i}>Remove</button>
     </div>
   </div>`
   }
 
-  const btnRemove = document.querySelectorAll('.btn-remove');
+  const mainGrid = document.querySelector('main');
 
-  for(i = 0; i < myLibrary.length; i++) {
-    btnRemove[i].addEventListener("click", function() {
-        
-      for(j = 0; j < myLibrary.length; j++) {
-        if(btnRemove[j].dataset.index === i) {
-          myLibrary.splice(btnRemove[i].index, 1);
-          displayLibrary();
-        }
-      }
-    });
-  }
+  mainGrid.addEventListener("click", function(e) {
+    let cardNumber = e.target.id.slice(-1);
+
+    if(cardNumber === e.target.dataset.index && !removed) {
+        myLibrary.splice(e.target.dataset.index, 1);
+        displayLibrary();
+        removed = true;
+    }
+  });
 }
 
 addBtn.addEventListener("click", function() {
