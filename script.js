@@ -6,18 +6,33 @@ const addForm = document.querySelector('.add-book-form');
 const btnOK = document.querySelector('#btn-ok');
 const btnCancel = document.querySelector('#btn-cancel');
 
-//Constructor
-function Book(title, author, pages, isRead) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.isRead = isRead;
-  this.index = myLibrary.length;
+//Constructor changed to class and added addBookToLibrary to class
+class Book {
+  constructor(title, author, pages, isRead) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.isRead = isRead;
+  }
+
+  addBookToLibrary() {
+    myLibrary.push(this);
+  }
 }
 
-function addBookToLibrary(book) {
-  myLibrary.push(book);
-}
+//Old Constructor Below...
+
+//function Book(title, author, pages, isRead) {
+//  this.title = title;
+//  this.author = author;
+//  this.pages = pages;
+//  this.isRead = isRead;
+//  this.index = myLibrary.length;
+//}
+
+//function addBookToLibrary(book) {
+//  myLibrary.push(book);
+//}
 
 function displayLibrary() {
   const grid = document.querySelector('main');
@@ -78,7 +93,7 @@ btnOK.addEventListener("click", function() {
   } else {
     const newBook = new Book(newTitle, newAuthor, newPages, newIsRead);
 
-    addBookToLibrary(newBook);
+    newBook.addBookToLibrary();
     displayLibrary();
 
     document.querySelector('#title').value = "";
@@ -102,16 +117,16 @@ window.addEventListener('load',function() {
   for(j = 0; j < 4; j++) {
     if(j === 0 ) {
       let newBook = new Book("In Search of Lost Time", "Marcel Proust", 357, false);
-      addBookToLibrary(newBook);
+      newBook.addBookToLibrary();
     } else if(j === 1) {
       let newBook = new Book("Ulysses", "James Joyce", 214, false);
-      addBookToLibrary(newBook);
+      newBook.addBookToLibrary();
     } else if(j === 2) {
       let newBook = new Book("Don Quixote", "Miquel de Cervantes", 22, true);
-      addBookToLibrary(newBook);
+      newBook.addBookToLibrary();
     } else if(j === 3) {
       let newBook = new Book("One Hundred Years of Solitude", "Gabriel Garcia Marquez", 297, false);
-      addBookToLibrary(newBook);
+      newBook.addBookToLibrary();
     }
 
     displayLibrary();

@@ -14,7 +14,7 @@ body {
 
 header {
   box-shadow: 0 5px 5px lightgrey;
-  background: linear-gradient(122deg, #c09000, rgb(25, 49, 58) 70%);
+  background: linear-gradient(122deg, #c09000 30%, #19313a 70%);
 }
 
 .logo-container {
@@ -73,7 +73,7 @@ footer {
   width: 50px;
   border-radius: 25px;
   border: none;
-  background-color: #d8a50c;
+  background-color: #53db14;
   box-shadow: 3px 3px 3px black;
   margin: 10px;
   font-size: 2.5rem;
@@ -97,7 +97,7 @@ footer {
   margin: -125px -250px;
   border-radius: 15px;
   border: 1px solid lightgrey;
-  border-top: 1.8rem solid #87ceeb;
+  border-top: 1.8rem solid #19313a;
   background-color: #fff;
   padding: 20px;
   box-shadow: 5px 5px 5px lightgrey;
@@ -139,11 +139,11 @@ footer {
 }
 
 #btn-ok {
-  background-color: #87ceeb;
+  background-color: #53db14;
 }
 
 #btn-cancel {
-  background-color: #c09000;
+  background-color: #ee2626;
 }
 
 .card-btn-container {
@@ -168,9 +168,9 @@ footer {
 }
 
 .btn-remove {
-  background-color: rgb(219, 34, 34);
+  background-color: #ee2626;
 }
 
 .btn-mark-read {
-  background-color:rgb(143, 219, 20);
+  background-color:#53db14;
 }
