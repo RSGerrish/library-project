@@ -1,10 +1,19 @@
-let myLibrary = [];
 let firstTime = false;
 let removed = false;
 const addBtn = document.querySelector('#btn-add');
 const addForm = document.querySelector('.add-book-form');
 const btnOK = document.querySelector('#btn-ok');
-const btnCancel = document.querySelector('#btn-cancel');
+const btnCancel = document.querySelector('#btn-cancel');  
+const newTitle = document.querySelector('#title');
+const newAuthor = document.querySelector('#author');
+const newPages = document.querySelector('#pages');
+const newIsRead = document.querySelector('#is-read');
+const mainElement = document.querySelector('main');
+
+if(typeof myLibrary === 'undefined') {
+  var myLibrary = [];
+}
+
 
 //Constructor changed to class and added addBookToLibrary to class
 class Book {
@@ -18,6 +27,10 @@ class Book {
   addBookToLibrary() {
     myLibrary.push(this);
   }
+}
+
+function initializeMyLibrary() {
+  myLibrary = [];
 }
 
 //Old Constructor Below...
@@ -70,28 +83,71 @@ function displayLibrary() {
       myLibrary.splice(listIndex, 1);
       displayLibrary();
       e.stopImmediatePropagation();
+
+      return;
     } else if(target === 'btn-mark-read') {
       myLibrary[listIndex].isRead = true;
       displayLibrary();
       e.stopImmediatePropagation();
+
+      return;
     }
   });
+
+  return;
 }
 
 addBtn.addEventListener("click", function() {
   addForm.style.visibility = "visible";
+  return;
+});
+
+newTitle.addEventListener("input", function() {
+  if(newTitle.validity.valueMissing){
+    newTitle.setCustomValidity("Please enter a book title");
+    return;
+  } else {
+    newTitle.setCustomValidity("");
+    return;
+  }
+});
+
+newAuthor.addEventListener("input", function() {
+  if(newAuthor.validity.valueMissing) {
+    newAuthor.setCustomValidity("Please enter Author name");
+    return;
+  } else {
+    newAuthor.setCustomValidity("");
+    return;
+  }
+});
+
+newPages.addEventListener("input", function() {
+  if(newPages.validity.valueMissing) {
+    newPages.setCustomValidity("Please enter number of pages");
+    return;
+  } else{
+    newPages.setCustomValidity("");
+    return;
+  }
 });
 
 btnOK.addEventListener("click", function() {
-  const newTitle = document.querySelector('#title').value;
-  const newAuthor = document.querySelector('#author').value;
-  const newPages = document.querySelector('#pages').value;
-  const newIsRead = document.querySelector('#is-read').checked;
+  newTitle.setAttribute("required", "true");
+  newAuthor.setAttribute("required", "true");
+  newPages.setAttribute("required", "true");
 
-  if(!newTitle || !newAuthor || !newPages) {
+  if(newTitle.validity.valueMissing) {
+    newTitle.setCustomValidity("Please enter a book title");
     return;
-  } else {
-    const newBook = new Book(newTitle, newAuthor, newPages, newIsRead);
+  } else if(newAuthor.validity.valueMissing) {
+    newAuthor.setCustomValidity("Please enter Author name");
+    return;
+  } else if(newPages.validity.valueMissing) {
+    newPages.setCustomValidity("Please enter number of pages");
+    return;
+  }else {
+    const newBook = new Book(newTitle.value, newAuthor.value, newPages.value, newIsRead.value);
 
     newBook.addBookToLibrary();
     displayLibrary();
@@ -100,35 +156,54 @@ btnOK.addEventListener("click", function() {
     document.querySelector('#author').value = "";
     document.querySelector('#pages').value = "";
     document.querySelector('#is-read').checked = false;
+
+    newTitle.removeAttribute("required");
+    newAuthor.removeAttribute("required");
+    newPages.removeAttribute("required");
+
     addForm.style.visibility = "hidden";
   }
+
+  return;
 });
 
 btnCancel.addEventListener("click", function() {
-  document.querySelector('#title').value = "";
-  document.querySelector('#author').value = "";
-  document.querySelector('#pages').value = "";
-  document.querySelector('#is-read').checked = false;
+  newTitle.value = "";
+  newAuthor.value = "";
+  newPages.value = "";
+  newIsRead.checked = false;
+
+  newTitle.removeAttribute("required");
+  newAuthor.removeAttribute("required");
+  newPages.removeAttribute("required");
+
   addForm.style.visibility = "hidden";
+
+  return;
 });
+
+console.log(mainElement);
 
 window.addEventListener('load',function() {
   //Populate library with 4 books...
-  for(j = 0; j < 4; j++) {
-    if(j === 0 ) {
-      let newBook = new Book("In Search of Lost Time", "Marcel Proust", 357, false);
-      newBook.addBookToLibrary();
-    } else if(j === 1) {
-      let newBook = new Book("Ulysses", "James Joyce", 214, false);
-      newBook.addBookToLibrary();
-    } else if(j === 2) {
-      let newBook = new Book("Don Quixote", "Miquel de Cervantes", 22, true);
-      newBook.addBookToLibrary();
-    } else if(j === 3) {
-      let newBook = new Book("One Hundred Years of Solitude", "Gabriel Garcia Marquez", 297, false);
-      newBook.addBookToLibrary();
+  if(!myLibrary.length) {
+    for(j = 0; j < 4; j++) {
+      if(j === 0 ) {
+        let newBook = new Book("In Search of Lost Time", "Marcel Proust", 357, false);
+        newBook.addBookToLibrary();
+      } else if(j === 1) {
+        let newBook = new Book("Ulysses", "James Joyce", 214, false);
+        newBook.addBookToLibrary();
+      } else if(j === 2) {
+        let newBook = new Book("Don Quixote", "Miquel de Cervantes", 22, true);
+        newBook.addBookToLibrary();
+      } else if(j === 3) {
+        let newBook = new Book("One Hundred Years of Solitude", "Gabriel Garcia Marquez", 297, false);
+        newBook.addBookToLibrary();
+      }
     }
 
     displayLibrary();
+    return;
   }
 });
